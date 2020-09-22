@@ -13,118 +13,170 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-slides pager="true" [options]="slideOpts">
-    <ion-slide>
-      <ion-list>
-        <ion-radio-group value="Carga">
+  <div *ngIf="!running">
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-list>
+          <ion-radio-group value="Carga">
+            <ion-list-header>
+              <ion-label>Escoga el tamaño de la carga</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>Pequeña</ion-label>
+              <ion-radio slot="start" value="small"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Mediana</ion-label>
+              <ion-radio slot="start" value="medium"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Grande</ion-label>
+              <ion-radio slot="start" value="big"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <div class="info">
+          <p>Con la elección del tamaño para la carga está configurando la cantidad de ropa que se espera lavar y por lo tanto la cantidad de agua con la que se llenará</p>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-list>
+          <ion-radio-group value="TempLav">
+            <ion-list-header>
+              <ion-label>Escoga la temperatura de lavado</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>Fría</ion-label>
+              <ion-radio slot="start" value="cold"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Tibia</ion-label>
+              <ion-radio slot="start" value="med"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Caliente</ion-label>
+              <ion-radio slot="start" value="hot"></ion-radio>
+            </ion-item>
+
+          </ion-radio-group>
+        </ion-list>
+        <div class="info">
+          <p>Esta opción configura la temperatura con la cual se lavará la ropa</p>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-list>
+          <ion-radio-group value="TempEnj">
+            <ion-list-header>
+              <ion-label>Escoga la temperatura de enjuagado</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>Fría</ion-label>
+              <ion-radio slot="start" value="cold"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Tibia</ion-label>
+              <ion-radio slot="start" value="med"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Caliente</ion-label>
+              <ion-radio slot="start" value="hot"></ion-radio>
+            </ion-item>
+
+          </ion-radio-group>
+        </ion-list>
+        <div class="info">
+          <p>Esta opción configura la temperatura con la cual se enjuagará la ropa</p>
+        </div>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-list>
+          <ion-radio-group value="Tipo">
+            <ion-list-header>
+              <ion-label>Escoga el tipo de lavado</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>Ciclo Regular</ion-label>
+              <ion-radio slot="start" value="regular"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Ciclo Perm Press</ion-label>
+              <ion-radio slot="start" value="perm"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Ciclo Delicado</ion-label>
+              <ion-radio slot="start" value="delicate"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-list lines="full">
           <ion-list-header>
-            <ion-label>Escoga el tamaño de la carga</ion-label>
+            <ion-label>Configuración del ciclo de lavado</ion-label>
           </ion-list-header>
-      
-          <ion-item>
-            <ion-label>Pequeña</ion-label>
-            <ion-radio slot="start" value="small"></ion-radio>
-          </ion-item>
-      
+
           <ion-item>
             <ion-label>Mediana</ion-label>
-            <ion-radio slot="start" value="medium"></ion-radio>
           </ion-item>
-      
+        
           <ion-item>
-            <ion-label>Grande</ion-label>
-            <ion-radio slot="start" value="big"></ion-radio>
+            <ion-label>Fria / Fria</ion-label>
           </ion-item>
-        </ion-radio-group>
-      </ion-list>
-      <div class="info">
-        <p>Con la elección del tamaño para la carga está configurando la cantidad de ropa que se espera lavar y por lo tanto la cantidad de agua con la que se llenará</p>
+        
+          <ion-item>
+            <ion-label>Perm Press</ion-label>
+          </ion-item>
+        </ion-list>
+        <p class="p-info">
+          Si quiere modificar algún parametro de la configuración de lavado tan solo retroceda y modifique.
+        </p>
+        <div>
+          <ion-button color="secondary" (click)="run()">Iniciar Lavado</ion-button>
+        </div>
+      </ion-slide>
+
+    </ion-slides>
+  </div>
+
+  <div *ngIf="running" class="running">
+    <div>
+      <h3>Ciclo en progreso</h3>
+      <ion-progress-bar color="primary" value="0.666"></ion-progress-bar>
+    </div>
+    <p>
+      Características del ciclo escogido
+    </p>
+    <div class="options">
+      <div *ngIf="stopping" class="stop">
+        <ion-button color="danger"  (click)="stop()">Detener proceso</ion-button>
       </div>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-list>
-        <ion-radio-group value="TempLav">
-          <ion-list-header>
-            <ion-label>Escoga la temperatura de lavado</ion-label>
-          </ion-list-header>
-      
-          <ion-item>
-            <ion-label>Fría</ion-label>
-            <ion-radio slot="start" value="cold"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Tibia</ion-label>
-            <ion-radio slot="start" value="med"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Caliente</ion-label>
-            <ion-radio slot="start" value="hot"></ion-radio>
-          </ion-item>
-
-        </ion-radio-group>
-      </ion-list>
-      <div class="info">
-        <p>Esta opción configura la temperatura con la cual se lavará la ropa</p>
+      <div  *ngIf="!stopping" class="wait">
+        <p>Proceso pausado</p>
+        <div class="buttons">
+          <ion-button color="success">Reanudar</ion-button>
+          <ion-button color="danger" (click)="run()">Cancelar</ion-button>
+          <ion-button color="warning" (click)="stop()">Reiniciar</ion-button>
+        </div>
       </div>
-    </ion-slide>
+    </div>
 
-    <ion-slide>
-      <ion-list>
-        <ion-radio-group value="TempEnj">
-          <ion-list-header>
-            <ion-label>Escoga la temperatura de enjuagado</ion-label>
-          </ion-list-header>
-      
-          <ion-item>
-            <ion-label>Fría</ion-label>
-            <ion-radio slot="start" value="cold"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Tibia</ion-label>
-            <ion-radio slot="start" value="med"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Caliente</ion-label>
-            <ion-radio slot="start" value="hot"></ion-radio>
-          </ion-item>
-
-        </ion-radio-group>
-      </ion-list>
-      <div class="info">
-        <p>Esta opción configura la temperatura con la cual se enjuagará la ropa</p>
-      </div>
-    </ion-slide>
-
-    <ion-slide>
-      <ion-list>
-        <ion-radio-group value="Tipo">
-          <ion-list-header>
-            <ion-label>Escoga el tipo de lavado</ion-label>
-          </ion-list-header>
-      
-          <ion-item>
-            <ion-label>Ciclo Regular</ion-label>
-            <ion-radio slot="start" value="regular"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Ciclo Perm Press</ion-label>
-            <ion-radio slot="start" value="perm"></ion-radio>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>Ciclo Delicado</ion-label>
-            <ion-radio slot="start" value="delicate"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-    </ion-slide>
-
-  </ion-slides>
+  </div>
 
 </ion-content>

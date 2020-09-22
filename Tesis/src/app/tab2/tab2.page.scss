@@ -12,6 +12,9 @@ ion-list-header ion-label {
     font-size: 20px;
     padding: 25px 0px;
 }
+ion-list-header {
+    padding: 0px;
+}
 ion-slide {
     display: grid;
 }
@@ -19,4 +22,30 @@ ion-slide {
     margin: 30px;
     text-align: justify;
     font-size: 15px;
+}
+.p-info {
+    padding: 0px 25px;
+    text-align: justify;
+    font-size: 15px;
+}
+ion-button {
+    margin-bottom: 40px;
+}
+
+.running {
+    padding: 10px;
+}
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.buttons ion-button {
+    margin: auto;
+    font-size: 13px;
+}
+.wait p {
+    text-align: center;
+}
+.stop {
+    text-align: center;
 }
