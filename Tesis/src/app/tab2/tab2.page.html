@@ -14,27 +14,28 @@
   </ion-header>
 
   <div *ngIf="!running" style="height: 100%;">
+    <form [formGroup]="washForm">
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide>
         <ion-list>
-          <ion-radio-group value="Carga">
+          <ion-radio-group value="TamCarga">
             <ion-list-header>
-              <ion-label>Escoga el tamaño de la carga</ion-label>
+              <ion-label>Escoja el tamaño de la carga</ion-label>
             </ion-list-header>
         
             <ion-item>
-              <ion-label>Pequeña</ion-label>
-              <ion-radio slot="start" value="small"></ion-radio>
+              <ion-label for="small">Pequeña</ion-label>
+              <input type="radio" slot="start" name="tamCarga0" formControlName="tamCarga0" value="small">
             </ion-item>
         
             <ion-item>
-              <ion-label>Mediana</ion-label>
-              <ion-radio slot="start" value="medium"></ion-radio>
+              <ion-label for="medium">Mediana</ion-label>
+              <input type="radio" slot="start" name="tamCarga0" formControlName="tamCarga0" value="medium">
             </ion-item>
         
             <ion-item>
-              <ion-label>Grande</ion-label>
-              <ion-radio slot="start" value="big"></ion-radio>
+              <ion-label for="small">Grande</ion-label>
+              <input type="radio" slot="start" name="tamCarga0" formControlName="tamCarga0" value="big">
             </ion-item>
           </ion-radio-group>
         </ion-list>
@@ -47,22 +48,22 @@
         <ion-list>
           <ion-radio-group value="TempLav">
             <ion-list-header>
-              <ion-label>Escoga la temperatura de lavado</ion-label>
+              <ion-label>Escoja la temperatura de lavado</ion-label>
             </ion-list-header>
         
             <ion-item>
               <ion-label>Fría</ion-label>
-              <ion-radio slot="start" value="cold"></ion-radio>
+              <input type="radio" slot="start" name="tempLav0" formControlName="tempLav0" value="cold">
             </ion-item>
         
             <ion-item>
               <ion-label>Tibia</ion-label>
-              <ion-radio slot="start" value="med"></ion-radio>
+              <input type="radio" slot="start" name="tempLav0" formControlName="tempLav0" value="med">
             </ion-item>
         
             <ion-item>
               <ion-label>Caliente</ion-label>
-              <ion-radio slot="start" value="hot"></ion-radio>
+              <input type="radio" slot="start" name="tempLav0" formControlName="tempLav0" value="hot">
             </ion-item>
 
           </ion-radio-group>
@@ -76,22 +77,22 @@
         <ion-list>
           <ion-radio-group value="TempEnj">
             <ion-list-header>
-              <ion-label>Escoga la temperatura de enjuagado</ion-label>
+              <ion-label>Escoja la temperatura de enjuagado</ion-label>
             </ion-list-header>
         
             <ion-item>
               <ion-label>Fría</ion-label>
-              <ion-radio slot="start" value="cold"></ion-radio>
+              <input type="radio" slot="start" name="tempEnj0" formControlName="tempEnj0" value="cold">
             </ion-item>
         
             <ion-item>
               <ion-label>Tibia</ion-label>
-              <ion-radio slot="start" value="med"></ion-radio>
+              <input type="radio" slot="start" name="tempEnj0" formControlName="tempEnj0" value="med">
             </ion-item>
         
             <ion-item>
               <ion-label>Caliente</ion-label>
-              <ion-radio slot="start" value="hot"></ion-radio>
+              <input type="radio" slot="start" name="tempEnj0" formControlName="tempEnj0" value="hot">
             </ion-item>
 
           </ion-radio-group>
@@ -105,22 +106,22 @@
         <ion-list>
           <ion-radio-group value="Tipo">
             <ion-list-header>
-              <ion-label>Escoga el tipo de lavado</ion-label>
+              <ion-label>Escoja el tipo de lavado</ion-label>
             </ion-list-header>
         
             <ion-item>
               <ion-label>Ciclo Regular</ion-label>
-              <ion-radio slot="start" value="regular"></ion-radio>
+              <input type="radio" slot="start" name="tipoLav0" formControlName="tipoLav0" value="regular">
             </ion-item>
         
             <ion-item>
               <ion-label>Ciclo Perm Press</ion-label>
-              <ion-radio slot="start" value="perm"></ion-radio>
+              <input type="radio" slot="start" name="tipoLav0" formControlName="tipoLav0" value="perm">
             </ion-item>
         
             <ion-item>
               <ion-label>Ciclo Delicado</ion-label>
-              <ion-radio slot="start" value="delicate"></ion-radio>
+              <input type="radio" slot="start" name="tipoLav0" formControlName="tipoLav0" value="delicate">
             </ion-item>
           </ion-radio-group>
         </ion-list>
@@ -134,14 +135,17 @@
 
           <ion-item>
             <ion-label>Mediana</ion-label>
+            <input type="radio" slot="start" name="configCiclo0" formControlName="configCiclo0" value="medium">
           </ion-item>
         
           <ion-item>
             <ion-label>Fria / Fria</ion-label>
+            <input type="radio" slot="start" name="configCiclo0" formControlName="configCiclo0" value="cold">
           </ion-item>
         
           <ion-item>
             <ion-label>Perm Press</ion-label>
+            <input type="radio" slot="start" name="configCiclo0" formControlName="configCiclo0" value="perm">
           </ion-item>
         </ion-list>
         <p class="p-info">
@@ -153,6 +157,7 @@
       </ion-slide>
 
     </ion-slides>
+  </form>
   </div>
 
   <div *ngIf="running" class="running">
